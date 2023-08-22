@@ -7,7 +7,125 @@
 		<title>Documentation</title>
 	</head>
 	<body>
-		<h1>Movie App API</h1>
-		<p>App to show movies and users</p>
+		<div class="container" id="Title">
+			<h1>Movie App API</h1>
+			<p>
+				App to allow users to search Movies by a Title, Genre, Director and
+				allow users to add favorite movies
+			</p>
+		</div>
+		
+		<!-- table for endpoints -->
+		<div class="container">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Request</th>
+						<th>URL</th>
+						<th>HTTP Method</th>
+						<th>Request body data format</th>
+						<th>Response body data format</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>list of all movie titles</td>
+						<td>http://localhost:8080/movies</td>
+						<td>GET</td>
+						<td>None</td>
+						<td>A JSON object holding data about all the movies.</td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<td>list movie by title</td>
+						<td>http://localhost:8080/movies/Nacho%20Libre</td>
+						<td>GET</td>
+						<td>None</td>
+						<td>
+							A JSON object holding data about a movie by title containing
+							Title, Year, Rating, Description, Comments, Genre, Director,
+							ImageURL.
+						</td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<td>list movie genre</td>
+						<td>http://localhost:8080/movies/genre/Comedy</td>
+						<td>GET</td>
+						<td>None</td>
+						<td>
+							A JSON object holding data about a movie genre and a description
+							of the genre.
+						</td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<td>list director</td>
+						<td>http://localhost:8080/movies/directors/Jon%20Favreau</td>
+						<td>GET</td>
+						<td>None</td>
+						<td>
+							A JSON object holding data about a movie director containing Name,
+							short Bio and Birth Year.
+						</td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<td>update user name</td>
+						<td>http://localhost:8080/users/1</td>
+						<td>PUT</td>
+						<td>A JSON object containing users updated name</td>
+						<td>
+							A JSON object holding data with users updated Name, id, and
+							Favorite Movie.
+						</td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<td>add user and create unique id</td>
+						<td>http://localhost:8080/users</td>
+						<td>POST</td>
+						<td>A JSON object containing a user name</td>
+						<td>A JSON object holding data with user and unique id.</td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<td>add users favorite movie</td>
+						<td>http://localhost:8080/users/1/Hot%20Fuzz</td>
+						<td>POST</td>
+						<td>A JSON object containing a users name and favorite movie</td>
+						<td>
+							A message indicating a movie title was added to users array.
+						</td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<td>delete users favorite movie</td>
+						<td>http://localhost:8080/users/2/Elf</td>
+						<td>DELETE</td>
+						<td>None</td>
+						<td>
+							A message indicating a movie title was removed from users array.
+						</td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<td>delete user from array</td>
+						<td>http://localhost:8080/users/2</td>
+						<td>DELETE</td>
+						<td>None</td>
+						<td>A message indicating a user was removed from array.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</body>
 </html>
