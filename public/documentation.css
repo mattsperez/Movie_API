@@ -1,0 +1,15 @@
+div {
+	text-align: center;
+}
+
+.table {
+	border: solid 3px;
+}
+
+.CRUD {
+	border: dashed;
+}
+
+.url {
+	text-decoration: underline;
+}
