@@ -4,6 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="documentation.css" />
 		<title>Documentation</title>
 	</head>
 	<body>
@@ -14,115 +15,136 @@
 				allow users to add favorite movies
 			</p>
 		</div>
-		
-		<!-- table for endpoints -->
+
+		<!-- table for all endpoints -->
 		<div class="container">
 			<table class="table">
-				<thead>
+				<thead class="table-header" id="header">
 					<tr>
-						<th>Request</th>
-						<th>URL</th>
-						<th>HTTP Method</th>
-						<th>Request body data format</th>
-						<th>Response body data format</th>
+						<th scope="col">Request</th>
+						<th scope="col">URL</th>
+						<th scope="col">HTTP Method</th>
+						<th scope="col">Request Data</th>
+						<th scope="col">Response Data</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>list of all movie titles</td>
-						<td>http://localhost:8080/movies</td>
-						<td>GET</td>
+						<th scope="row">All Movie Titles</th>
+						<td class="url">http://localhost:8080/movies</td>
+						<td class="CRUD">GET</td>
 						<td>None</td>
-						<td>A JSON object holding data about all the movies.</td>
+						<td>Returns a list of all Movies.</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<td>list movie by title</td>
-						<td>http://localhost:8080/movies/Nacho%20Libre</td>
-						<td>GET</td>
+						<th scope="row">Movie by Title</th>
+						<td class="url">http://localhost:8080/movies/Barbie</td>
+						<td class="CRUD">GET</td>
 						<td>None</td>
 						<td>
-							A JSON object holding data about a movie by title containing
-							Title, Year, Rating, Description, Comments, Genre, Director,
-							ImageURL.
+							Returns Barbie movie information
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<td>list movie genre</td>
-						<td>http://localhost:8080/movies/genre/Comedy</td>
-						<td>GET</td>
+						<th scope="row">Movie Genre</th>
+						<td class="url">http://localhost:8080/movies/genres/Actiom</td>
+						<td class="CRUD">GET</td>
 						<td>None</td>
 						<td>
-							A JSON object holding data about a movie genre and a description
-							of the genre.
+							A JSON object holding data about Action genre and a description
+							of this genre.
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<td>list director</td>
-						<td>http://localhost:8080/movies/directors/Jon%20Favreau</td>
-						<td>GET</td>
+						<th scope="row">Director by Name</th>
+						<td class="url">
+							http://localhost:8080/movies/directors/Greta%20Gerwig
+						</td>
+						<td class="CRUD">GET</td>
 						<td>None</td>
 						<td>
-							A JSON object holding data about a movie director containing Name,
+							A JSON object holding data about Greta Gerwig director containing Name,
 							short Bio and Birth Year.
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<td>update user name</td>
-						<td>http://localhost:8080/users/1</td>
-						<td>PUT</td>
-						<td>A JSON object containing users updated name</td>
-						<td>
-							A JSON object holding data with users updated Name, id, and
-							Favorite Movie.
-						</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<td>add user and create unique id</td>
-						<td>http://localhost:8080/users</td>
-						<td>POST</td>
-						<td>A JSON object containing a user name</td>
-						<td>A JSON object holding data with user and unique id.</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<td>add users favorite movie</td>
-						<td>http://localhost:8080/users/1/Hot%20Fuzz</td>
-						<td>POST</td>
-						<td>A JSON object containing a users name and favorite movie</td>
-						<td>
-							A message indicating a movie title was added to users array.
-						</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<td>delete users favorite movie</td>
-						<td>http://localhost:8080/users/2/Elf</td>
-						<td>DELETE</td>
+						<th scope="row">List Users</th>
+						<td class="url">http://localhost:8080/users</td>
+						<td class="CRUD">GET</td>
 						<td>None</td>
 						<td>
-							A message indicating a movie title was removed from users array.
+							Returns all Users
+						</td>
+					</tr>
+				</tbody>
+					<tbody>
+					<tr>
+						<th scope="row">List Users by Username</th>
+						<td class="url">http://localhost:8080/users/Anne</td>
+						<td class="CRUD">GET</td>
+						<td>None</td>
+						<td>
+							Returns specific User
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<td>delete user from array</td>
-						<td>http://localhost:8080/users/2</td>
-						<td>DELETE</td>
+						<th scope="row">Update User Information</th>
+						<td class="url">http://localhost:8080/users/Matt</td>
+						<td class="CRUD">PUT</td>
+						<td>A JSON object with updates being made to User</td>
+						<td>
+							A JSON object holding data with users updated Name, Password, Email, Birthday and Favorite Movie.
+						</td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<th scope="row">Add User</th>
+						<td class="url">http://localhost:8080/users</td>
+						<td class="CRUD">POST</td>
+						<td>A JSON object containing Username, Password, Email, Birthday</td>
+						<td>A JSON object holding data with User, Password, Email, Birthday, Favorite Moive and Unique id.</td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<th scope="row">Add Favorite Movie to User</th>
+						<td class="url">http://localhost:8080/users/Matt/movies/64ecfde3f11c5b367531faed</td>
+						<td class="CRUD">POST</td>
 						<td>None</td>
-						<td>A message indicating a user was removed from array.</td>
+						<td>
+							adds a movie by MovieID.
+						</td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<th scope="row">Remove Favorite Movie from User</th>
+						<td class="url">http://localhost:8080/users/Matt/movies/64ecfde3f11c5b367531faed</td>
+						<td class="CRUD">DELETE</td>
+						<td>None</td>
+						<td>
+							null.
+						</td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<th scope="row">Delete User</th>
+						<td class="url">http://localhost:8080/users/Beto</td>
+						<td class="CRUD">DELETE</td>
+						<td>None</td>
+						<td>A message indicating User was removed.</td>
 					</tr>
 				</tbody>
 			</table>
