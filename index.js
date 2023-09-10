@@ -23,8 +23,8 @@ app.use(express.urlencoded({ extended: true }));
 
 const Movies = Models.Movie;
 const Users = Models.User;
-const Genres = Models.Genre;
-const Directors = Models.Director;
+// const Genres = Models.Genre;
+// const Directors = Models.Director;
 
 
 mongoose.connect('mongodb://localhost:27017/movieappDB', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -171,8 +171,8 @@ app.use(myLogger);
 app.use(requestTime);
 
 app.get('/', (req, res) => {
-    let responseText = 'Welcome to my Movie App';
-    responseText += '<small>Requested at: ' + req.requestTime + '<small>';
+    let responseText = 'Welcome to my Movie App - ';
+    responseText += '' + 'Requested at: ' + req.requestTime;
     res.send(responseText);
 });
 
@@ -230,16 +230,18 @@ app.get("/movies/:Title", (req, res) => {
 });
 
 // READ movie by genre
-app.get('/genre/:Name', (req, res) => {
-    Genres.findOne({ Name: req.params.Name })
-        .then((genre) => {
-            res.json(genre.Description);
+app.get('/movies/genres/:genreName', (req, res) => {
+    Movies.findOne({ 'Genre.Name': req.params.genreName })
+        .then((movie) => {
+            res.status(200).json(movie.Genre);
         })
         .catch((err) => {
             console.error(err);
-            res.stauts(500).send('Error: ' + err);
+            res.status(500).send('Error: ' + err);
         });
 });
+
+
 // READ movies by director name
 app.get('/movies/directors/:directorName', (req, res) => {
     Movies.findOne({ 'Director.Name': req.params.directorName })
@@ -251,6 +253,7 @@ app.get('/movies/directors/:directorName', (req, res) => {
             res.status(500).send('Error: ' + err);
         });
 });
+
 
 // CREATE new user
 app.post('/users', async (req, res) => {
@@ -281,15 +284,16 @@ app.post('/users', async (req, res) => {
 
 // UPDATE user name
 app.put('/users/:Username', async (req, res) => {
-    await Users.findOneAndUpdate({ Username: req.params.Username }, {
-        $set:
+    await Users.findOneAndUpdate({ Username: req.params.Username },
         {
-            Username: req.body.Username,
-            Password: req.body.Password,
-            Email: req.body.Email,
-            Birthday: req.body.Birthday
-        }
-    },
+            $set:
+            {
+                Username: req.body.Username,
+                Password: req.body.Password,
+                Email: req.body.Email,
+                Birthday: req.body.Birthday
+            }
+        },
         { new: true })
         .then((updatedUser) => {
             res.json(updatedUser);
@@ -303,9 +307,8 @@ app.put('/users/:Username', async (req, res) => {
 
 // CREATE user add favorite movie
 app.post('/users/:Username/movies/:MovieID', async (req, res) => {
-    await Users.findOneAndUpdate({ Username: req.params.Username }, {
-        $push: { FavoriteMovies: req.params.MovieID }
-    },
+    await Users.findOneAndUpdate({ Username: req.params.Username },
+        { $push: { FavoriteMovies: req.params.MovieID } },
         { new: true })
         .then((updatedUser) => {
             res.json(updatedUser);
@@ -317,17 +320,17 @@ app.post('/users/:Username/movies/:MovieID', async (req, res) => {
 });
 
 // DELETE users favorite movie
-app.delete('/users/:id/:movieTitle', (req, res) => {
-    const { id, movieTitle } = req.params;
-
-    let user = users.find(user => user.id == id);
-
-    if (user) {
-        user.favortieMovies = user.favortieMovies.filter(title => title != movieTitle)
-        res.status(200).send(`${movieTitle} has been removed from user ${id}'s array`);
-    } else {
-        res.status(400).send("user not found")
-    }
+app.delete('/users/:Username/movies/:MovieID', (req, res) => {
+    Users.findOneAndUpdate({ Username: req.params.Username },
+        { $pull: { FavoriteMovies: req.params.MovieID } },
+        { new: true })
+        .then((updatedUser) => {
+            res.json(updatedUser);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
+        });
 });
 
 // DELETE user by username
