@@ -308,7 +308,7 @@ app.put('/users/:Username', async (req, res) => {
 // CREATE user add favorite movie
 app.post('/users/:Username/movies/:MovieID', async (req, res) => {
     await Users.findOneAndUpdate({ Username: req.params.Username },
-        { $push: { FavoriteMovies: req.params.MovieID } },
+        { $push: { FavoriteMovie: req.params.MovieID } },
         { new: true })
         .then((updatedUser) => {
             res.json(updatedUser);
@@ -320,9 +320,9 @@ app.post('/users/:Username/movies/:MovieID', async (req, res) => {
 });
 
 // DELETE users favorite movie
-app.delete('/users/:Username/movies/:MovieID', (req, res) => {
-    Users.findOneAndUpdate({ Username: req.params.Username },
-        { $pull: { FavoriteMovies: req.params.MovieID } },
+app.delete('/users/:Username/movies/:MovieID', async (req, res) => {
+    await Users.findOneAndRemove({ Username: req.params.Username },
+        { $pull: { FavoriteMovie: req.params.MovieID } },
         { new: true })
         .then((updatedUser) => {
             res.json(updatedUser);
