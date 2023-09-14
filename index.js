@@ -321,7 +321,7 @@ app.post('/users/:Username/movies/:MovieID', async (req, res) => {
 
 // DELETE users favorite movie
 app.delete('/users/:Username/movies/:MovieID', async (req, res) => {
-    await Users.findOneAndRemove({ Username: req.params.Username },
+    await Users.findOneAndUpdate({ Username: req.params.Username },
         { $pull: { FavoriteMovie: req.params.MovieID } },
         { new: true })
         .then((updatedUser) => {
