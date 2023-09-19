@@ -8,7 +8,7 @@ const path = require('path');
 const uuid = require('uuid');
 const methodOverride = require('method-override');
 const app = express();
-const [check, validationResult] = require('express-validator');
+const { check, validationResult } = require('express-validator');
 
 // Bodyparser
 app.use(bodyParser.json());
@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({
 // Cors
 const cors = require('cors');
 let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
-app.use(cos({
+app.use(cors({
     origin: (origin, callback) => {
         if (!origin) return callback(null, true);
         if (allowedOrigins.indexOf(origin) === -1) {
@@ -400,6 +400,6 @@ app.use((err, req, res, next) => {
 
 // listen for requests
 const port = process.env.PORT || 8080;
-app.listen(port, '0.0.0.0',() => {
+app.listen(port, '0.0.0.0', () => {
     console.log('Listening on Port' + port);
 });
