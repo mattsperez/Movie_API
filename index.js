@@ -189,11 +189,11 @@ let requestTime = (req, res, next) => {
 app.use(myLogger);
 app.use(requestTime);
 
-app.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-    let responseText = 'Welcome to my Movie App - ';
-    responseText += '' + 'Requested at: ' + req.requestTime;
-    res.send(responseText);
-});
+// app.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+//     let responseText = 'Welcome to my Movie App';
+//     responseText += '' + 'Requested at: ' + req.requestTime;
+//     res.send(responseText);
+// });
 
 // READ Requests
 app.get('/', (req, res) => {
