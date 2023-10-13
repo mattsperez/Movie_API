@@ -28,7 +28,7 @@ app.use(cors({
         }
         return callback(null, true);
     }
-}))
+}));
 
 // Authentication
 let auth = require('./auth')(app);
