@@ -18,8 +18,12 @@ app.use(bodyParser.urlencoded({
 
 // Cors
 const cors = require('cors');
+<<<<<<< Updated upstream
 app.use(cors());
 let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234', 'http://localhost:61512'];
+=======
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:59582'];
+>>>>>>> Stashed changes
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin) return callback(null, true);
