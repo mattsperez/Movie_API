@@ -399,7 +399,18 @@ app.use((err, req, res, next) => {
 });
 
 // listen for requests
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 62412;
 app.listen(port, '0.0.0.0', () => {
     console.log('Listening on Port' + port);
 });
+
+// the abyss https://www.themoviedb.org/t/p/original/nCOdcQ4HrVBug0MsqvfVuMCijmx.jpg \
+// the big sick https://www.themoviedb.org/t/p/original/7z9Aiuu3ynSE6dMiXg4kF1Q3C0v.jpg \
+// the lion king https://www.themoviedb.org/t/p/original/pSfwXxP94xktZKn3UaeVe6VdFZl.jpg \
+// barbie https://www.themoviedb.org/t/p/original/4ODTvg9r3LQt31zxX6y8YELDo6p.jpg \
+// iron man https://www.themoviedb.org/t/p/original/78lPtwv72eTNqFW9COBYI0dWDJa.jpg \
+// lady bird https://www.themoviedb.org/t/p/original/nxO9loVHMz7QAwNJDBZCfQhZyY9.jpg \
+// true lies https://www.themoviedb.org/t/p/original/pweFTnzzTfGK68woSVkiTgjLzWm.jpg \
+// avatar https://www.themoviedb.org/t/p/original/6EiRUJpuoeQPghrs3YNktfnqOVh.jpg \
+// elf https://www.themoviedb.org/t/p/original/oOleziEempUPu96jkGs0Pj6tKxj.jpg \
+// tammy eye https://www.themoviedb.org/t/p/original/vw5WXyHqAfnhmGpSjpyZh34xau3.jpg
