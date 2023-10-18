@@ -18,8 +18,7 @@ app.use(bodyParser.urlencoded({
 
 // Cors
 const cors = require('cors');
-app.use(cors());
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234', 'http://localhost:62412'];
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:64212'];
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin) return callback(null, true);
@@ -29,10 +28,9 @@ app.use(cors({
         }
         return callback(null, true);
     }
-}));
+}))
 
 // Authentication
-
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
@@ -227,7 +225,7 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (r
 });
 
 // READ All Movies
-app.get('/movies', async (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Movies.find()
         .then((movies) => {
             res.status(201).json(movies);
@@ -239,7 +237,7 @@ app.get('/movies', async (req, res) => {
 });
 
 // READ Movies by Title
-app.get("/movies/:Title", passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
     Movies.findOne({ Title: req.params.Title })
         .then((movie) => {
             res.json(movie);
@@ -401,7 +399,18 @@ app.use((err, req, res, next) => {
 });
 
 // listen for requests
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 62412;
 app.listen(port, '0.0.0.0', () => {
     console.log('Listening on Port' + port);
 });
+
+// the abyss https://www.themoviedb.org/t/p/original/nCOdcQ4HrVBug0MsqvfVuMCijmx.jpg \
+// the big sick https://www.themoviedb.org/t/p/original/7z9Aiuu3ynSE6dMiXg4kF1Q3C0v.jpg \
+// the lion king https://www.themoviedb.org/t/p/original/pSfwXxP94xktZKn3UaeVe6VdFZl.jpg \
+// barbie https://www.themoviedb.org/t/p/original/4ODTvg9r3LQt31zxX6y8YELDo6p.jpg \
+// iron man https://www.themoviedb.org/t/p/original/78lPtwv72eTNqFW9COBYI0dWDJa.jpg \
+// lady bird https://www.themoviedb.org/t/p/original/nxO9loVHMz7QAwNJDBZCfQhZyY9.jpg \
+// true lies https://www.themoviedb.org/t/p/original/pweFTnzzTfGK68woSVkiTgjLzWm.jpg \
+// avatar https://www.themoviedb.org/t/p/original/6EiRUJpuoeQPghrs3YNktfnqOVh.jpg \
+// elf https://www.themoviedb.org/t/p/original/oOleziEempUPu96jkGs0Pj6tKxj.jpg \
+// tammy eye https://www.themoviedb.org/t/p/original/vw5WXyHqAfnhmGpSjpyZh34xau3.jpg
