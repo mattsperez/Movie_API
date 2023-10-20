@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 
 // Cors
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:53856'];
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:61340'];
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin) return callback(null, true);
@@ -399,7 +399,7 @@ app.use((err, req, res, next) => {
 });
 
 // listen for requests
-const port = process.env.PORT || 53856;
+const port = process.env.PORT || 61340;
 app.listen(port, '0.0.0.0', () => {
     console.log('Listening on Port' + port);
 });
