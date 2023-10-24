@@ -86,7 +86,7 @@ app.get('/users', passport.authenticate('jwt', { session: false }), async (req, 
 });
 
 // READ User by Username
-app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/users/:Username', passport.authenticate('jwt', { session: false }), async (req, res) => {
     Users.findOne({ Username: req.params.Username })
         .then((user) => {
             res.status(200).json(user);
@@ -110,7 +110,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), async (req,
 });
 
 // READ Movies by Title
-app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), async (req, res) => {
     Movies.findOne({ Title: req.params.Title })
         .then((movie) => {
             res.json(movie);
@@ -122,7 +122,7 @@ app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req
 });
 
 // READ movie by genre
-app.get('/movies/genres/:genreName', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies/genres/:genreName', passport.authenticate('jwt', { session: false }), async (req, res) => {
     Movies.findOne({ 'Genre.Name': req.params.genreName })
         .then((movie) => {
             res.status(200).json(movie.Genre);
@@ -135,7 +135,7 @@ app.get('/movies/genres/:genreName', passport.authenticate('jwt', { session: fal
 
 
 // READ movies by director name
-app.get('/movies/directors/:directorName', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies/directors/:directorName', passport.authenticate('jwt', { session: false }), async (req, res) => {
     Movies.findOne({ 'Director.Name': req.params.directorName })
         .then((movie) => {
             res.json(movie.Director);
@@ -272,7 +272,7 @@ app.use((err, req, res, next) => {
 });
 
 // listen for requests
-const port = process.env.PORT || 54939;
+const port = process.env.PORT || 57393;
 app.listen(port, '0.0.0.0', () => {
     console.log('Listening on Port' + port);
 });
