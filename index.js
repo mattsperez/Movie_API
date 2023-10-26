@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 
 // Cors
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:57393'];
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:52498'];
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin) return callback(null, true);
@@ -98,7 +98,7 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), as
 });
 
 // READ All Movies
-app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
+app.get('/movies', async (req, res) => {
     await Movies.find()
         .then((movies) => {
             res.status(201).json(movies);
