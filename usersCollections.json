@@ -1,0 +1,5 @@
+{"_id":{"$oid":"64f9b658b838dfe6470e4e28"},"Username":"Kiki","Password":"password789","Email":"kiki@example.com","Birthday":{"$date":"1991-01-01T00:00:00Z"},"FavoriteMovie":["The Lion King","Avatar"]}
+{"_id":{"$oid":"64fd05b4b838dfe6470e4e35"},"Username":"Anne","Password":"password456","Email":"anne@example.com","Birthday":{"$date":"1992-01-01T00:00:00Z"},"FavoriteMovie":["Iron Man","Barbie","Lady Bird"]}
+{"_id":{"$oid":"650253a83290b4d6aa000d05"},"Username":"Matt","Password":"password321","Email":"matt@example.com","Birthday":{"$date":"1990-01-01T00:00:00Z"},"FavoriteMovie":["Elf","The Big Sick",{"$oid":"64ecfde3f11c5b367531faed"},{"$oid":"64ecfde3f11c5b367531faed"}]}
+{"_id":{"$oid":"650849b0d0931fcee63be8d8"},"Username":"Genna","Password":"Password246","Email":"genna@example.com","Birthday":{"$date":"2000-01-01T00:00:00Z"},"FavoriteMovie":[{"$oid":"64ed0a83f11c5b367531faf2"}],"__v":0}
+{"_id":{"$oid":"650874e31be83d490c5d7ee6"},"Username":"Beto","Password":"password987","Email":"beto@example.com","Birthday":{"$date":{"$numberLong":"-189388800000"}},"FavoriteMovie":[],"__v":0}
