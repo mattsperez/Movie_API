@@ -46,7 +46,8 @@ const Users = Models.User;
 // const Directors = Models.Director;
 
 
-mongoose.connect(process.env.CONNECTION_URI);
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 let myLogger = (req, res, next) => {
     console.log(req.url);
