@@ -31,7 +31,7 @@ app.use(cors({
 }))
 
 // Authentication
-let auth = require('./auth')(app);
+require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
@@ -214,7 +214,7 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), as
 // CREATE user add favorite movie
 app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Users.findOneAndUpdate({ Username: req.params.Username },
-        { $push: { FavoriteMovie: req.params.MovieID } },
+        { $push: { FavoriteMovies: req.params.MovieID } },
         { new: true })
         .then((updatedUser) => {
             res.json(updatedUser);
