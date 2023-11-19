@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 
 // Cors
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234', 'http://localhost:50437'];
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234', 'http://localhost:61367'];
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin) return callback(null, true);
@@ -62,12 +62,6 @@ let requestTime = (req, res, next) => {
 //Logger
 app.use(myLogger);
 app.use(requestTime);
-
-// app.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-//     let responseText = 'Welcome to my Movie App';
-//     responseText += '' + 'Requested at: ' + req.requestTime;
-//     res.send(responseText);
-// });
 
 // READ Requests
 app.get('/', (req, res) => {
