@@ -83,8 +83,8 @@ app.get('/users', passport.authenticate('jwt', { session: false }), async (req, 
 // READ User by Username
 app.get('/users/:Username', passport.authenticate('jwt', { session: false }), async (req, res) => {
     Users.findOne({ Username: req.params.Username })
-        .then((users) => {
-            res.status(200).json(users);
+        .then((user) => {
+            res.status(200).json(user);
         })
         .catch((err) => {
             console.error(err);
@@ -153,8 +153,8 @@ app.post('/users',
     async (req, res) => {
         let hashedPassword = Users.hashPassword(req.body.Password);
         await Users.findOne({ Username: req.body.Username })
-            .then((users) => {
-                if (users) {
+            .then((user) => {
+                if (user) {
                     return res.status(400).send(req.body.Username + 'already exists');
                 } else {
                     Users
@@ -164,7 +164,7 @@ app.post('/users',
                             Email: req.body.Email,
                             Birthday: req.body.Birthday
                         })
-                        .then((users) => { res.status(201).json(users) })
+                        .then((user) => { res.status(201).json(user) })
                         .catch((error) => {
                             console.error(error);
                             res.status(500).send('Error: ' + error);
@@ -180,7 +180,7 @@ app.post('/users',
 // UPDATE user name
 app.put('/users/:Username', passport.authenticate('jwt', { session: false }), async (req, res) => {
     // Condition to check starts here
-    if (req.users.Username !== req.params.Username) {
+    if (req.user.Username !== req.params.Username) {
         return res.status(400).send("Permission denied");
     }
     // Conditions ends
@@ -195,8 +195,8 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), as
             }
         },
         { new: true })
-        .then((updatedUsers) => {
-            res.json(updatedUsers);
+        .then((updatedUser) => {
+            res.json(updatedUser);
         })
         .catch((err) => {
             console.error(err);
@@ -210,8 +210,8 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { sess
     await Users.findOneAndUpdate({ Username: req.params.Username },
         { $push: { FavoriteMovies: req.params.MovieID } },
         { new: true })
-        .then((updatedUsers) => {
-            res.json(updatedUsers);
+        .then((updatedUser) => {
+            res.json(updatedUser);
         })
         .catch((err) => {
             console.error(err);
@@ -224,8 +224,8 @@ app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { se
     await Users.findOneAndUpdate({ Username: req.params.Username },
         { $pull: { FavoriteMovies: req.params.MovieID } },
         { new: true })
-        .then((updatedUsers) => {
-            res.json(updatedUsers);
+        .then((updatedUser) => {
+            res.json(updatedUser);
         })
         .catch((err) => {
             console.error(err);
@@ -236,8 +236,8 @@ app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { se
 // DELETE user by username
 app.delete('/users/:Username', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Users.findOneAndRemove({ Username: req.params.Username })
-        .then((users) => {
-            if (!users) {
+        .then((user) => {
+            if (!user) {
                 res.status(400).send(req.params.Username + ' was not found');
             } else {
                 res.status(200).send(req.params.Username + ' was deleted.');
