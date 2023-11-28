@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Authentication
-let auth = require('./auth')(app);
+require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
@@ -272,7 +272,7 @@ app.use((err, req, res, next) => {
 });
 
 // listen for requests
-const port = process.env.PORT || 1234;
+const port = process.env.PORT || 61673;
 app.listen(port, '0.0.0.0', () => {
     console.log('Listening on Port' + port);
 });
