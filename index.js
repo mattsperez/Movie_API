@@ -285,3 +285,10 @@ app.listen(port, '0.0.0.0', () => {
 // avatar https://www.themoviedb.org/t/p/original/6EiRUJpuoeQPghrs3YNktfnqOVh.jpg \
 // elf https://www.themoviedb.org/t/p/original/oOleziEempUPu96jkGs0Pj6tKxj.jpg \
 // tammy eye https://www.themoviedb.org/t/p/original/vw5WXyHqAfnhmGpSjpyZh34xau3.jpg
+
+
+// jester2020
+// movieappDB
+
+// mongoimport --uri mongodb+srv://mattsorensonperez:jester2020@mi-movie-app.d7zmzey.mongodb.net/movie_api --collection users --type json --file ../movie_api/usersCollections.json
+// mongodb+srv://mattsorensonperez:jester2020@mi-movie-app.d7zmzey.mongodb.net/movie_api?retryWrites=true&w=majority
