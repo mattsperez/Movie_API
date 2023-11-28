@@ -16,10 +16,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-// Authentication
-let auth = require('./auth')(app);
-const passport = require('passport');
-require('./passport');
 
 // Cors
 const cors = require('cors');
@@ -34,6 +30,11 @@ app.use(cors({
         return callback(null, true);
     }
 }));
+
+// Authentication
+require('./auth')(app);
+const passport = require('passport');
+require('./passport');
 
 app.use(methodOverride());
 
