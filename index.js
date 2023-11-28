@@ -16,6 +16,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+// Authentication
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
+
 // Cors
 const cors = require('cors');
 let allowedOrigins = ['http://localhost:63038', 'http://testsite.com', 'http://localhost:1234'];
@@ -30,10 +35,7 @@ app.use(cors({
     }
 }))
 
-// Authentication
-require('./auth')(app);
-const passport = require('passport');
-require('./passport');
+
 
 app.use(methodOverride());
 
