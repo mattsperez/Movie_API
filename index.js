@@ -23,7 +23,7 @@ require('./passport');
 
 // Cors
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:63038', 'http://testsite.com', 'http://localhost:1234'];
+let allowedOrigins = ['http://localhost:61673', 'http://testsite.com', 'http://localhost:1234'];
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin) return callback(null, true);
@@ -272,7 +272,7 @@ app.use((err, req, res, next) => {
 });
 
 // listen for requests
-const port = process.env.PORT || 63038;
+const port = process.env.PORT || 1234;
 app.listen(port, '0.0.0.0', () => {
     console.log('Listening on Port' + port);
 });
