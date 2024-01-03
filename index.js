@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({
 
 // Cors
 const cors = require('cors');
-let allowedOrigins = ['http://testsite.com', 'http://localhost:1234', 'https://stellar-faloodeh-6b4470.netlify.app'];
+let allowedOrigins = ['http://testsite.com', 'http://localhost:1234', 'https://miflix.netlify.app'];
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin) return callback(null, true);
