@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({
 
 // Cors
 const cors = require('cors');
-let allowedOrigins = ['http://testsite.com', 'http://localhost:1234', 'http://localhost:62972'];
+let allowedOrigins = ['http://testsite.com', 'http://localhost:1234', 'https://stellar-faloodeh-6b4470.netlify.app'];
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin) return callback(null, true);
@@ -271,7 +271,7 @@ app.use((err, req, res, next) => {
 });
 
 // listen for requests
-const port = process.env.PORT || 62972;
+const port = process.env.PORT || 1234;
 app.listen(port, '0.0.0.0', () => {
     console.log('Listening on Port' + port);
 });
