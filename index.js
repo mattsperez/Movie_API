@@ -43,8 +43,8 @@ app.use(express.urlencoded({ extended: true }));
 
 const Movies = Models.Movie;
 const Users = Models.User;
-const Genres = Models.Genre;
-const Directors = Models.Director;
+// const Genres = Models.Genre;
+// const Directors = Models.Director;
 
 
 mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
