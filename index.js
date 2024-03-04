@@ -1,3 +1,7 @@
+/**
+ * Mongoose library for MongoDB object modeling.
+ * @type {import('mongoose')}
+ */
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 const bodyParser = require('body-parser');
@@ -21,6 +25,11 @@ app.use(bodyParser.urlencoded({
 const cors = require('cors');
 let allowedOrigins = ['http://testsite.com', 'http://localhost:1234', 'https://miflix.netlify.app', 'http://localhost:4200'];
 app.use(cors({
+    /**
+      * Origin callback function for CORS.
+      * @param {string} origin - Request origin.
+      * @param {Function} callback - Callback function.
+      */
     origin: (origin, callback) => {
         if (!origin) return callback(null, true);
         if (allowedOrigins.indexOf(origin) === -1) {
@@ -41,10 +50,17 @@ app.use(methodOverride());
 // Express
 app.use(express.urlencoded({ extended: true }));
 
+/**
+ * Mongoose Movie model.
+ * @type {import('./models.js').MovieModel}
+ */
 const Movies = Models.Movie;
+
+/**
+ * Mongoose User model.
+ * @type {import('./models.js').UserModel}
+ */
 const Users = Models.User;
-// const Genres = Models.Genre;
-// const Directors = Models.Director;
 
 
 mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
