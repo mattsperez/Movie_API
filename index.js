@@ -1,7 +1,4 @@
-/**
- * Mongoose library for MongoDB object modeling.
- * @type {import('mongoose')}
- */
+
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 const bodyParser = require('body-parser');
@@ -50,21 +47,12 @@ app.use(methodOverride());
 // Express
 app.use(express.urlencoded({ extended: true }));
 
-/**
- * Mongoose Movie model.
- * @type {import('./models.js').MovieModel}
- */
 const Movies = Models.Movie;
 
-/**
- * Mongoose User model.
- * @type {import('./models.js').UserModel}
- */
 const Users = Models.User;
 
 
 mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-
 
 let myLogger = (req, res, next) => {
     console.log(req.url);
@@ -76,15 +64,28 @@ let requestTime = (req, res, next) => {
     next();
 };
 
+
 //Logger
 app.use(myLogger);
 app.use(requestTime);
 
+/**
+ * Returns a response with a message indicating that the server is running.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response object with the message.
+ */
 // READ Requests
 app.get('/', (req, res) => {
     res.send('Welcome to my Movie App')
 });
 
+/**
+ * Retrieves a list of all users.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The list of users.
+ */
 // READ ALL Users
 app.get('/users', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Users.find()
@@ -97,6 +98,12 @@ app.get('/users', passport.authenticate('jwt', { session: false }), async (req, 
         });
 });
 
+/**
+ * Retrieves a user by username.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The user object.
+ */
 // READ User by Username
 app.get('/users/:Username', passport.authenticate('jwt', { session: false }), async (req, res) => {
     Users.findOne({ Username: req.params.Username })
@@ -109,6 +116,12 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), as
         });
 });
 
+/**
+ * Retrieves a list of all movies.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The list of movies.
+ */
 // READ All Movies
 app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Movies.find()
@@ -121,6 +134,12 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), async (req,
         });
 });
 
+/**
+ * Retrieves a movie by title.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The movie object.
+ */
 // READ Movies by Title
 app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), async (req, res) => {
     Movies.findOne({ Title: req.params.Title })
@@ -133,6 +152,12 @@ app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), asyn
         });
 });
 
+/**
+ * Retrieves a movie by genre.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The movie object.
+ */
 // READ movie by genre
 app.get('/movies/genres/:genreName', passport.authenticate('jwt', { session: false }), async (req, res) => {
     Movies.findOne({ 'Genre.Name': req.params.genreName })
@@ -146,6 +171,12 @@ app.get('/movies/genres/:genreName', passport.authenticate('jwt', { session: fal
 });
 
 
+/**
+ * Retrieves a movie by director's name.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The movie object.
+ */
 // READ movies by director name
 app.get('/movies/directors/:directorName', passport.authenticate('jwt', { session: false }), async (req, res) => {
     Movies.findOne({ 'Director.Name': req.params.directorName })
@@ -203,6 +234,12 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), as
 
     let hashedPassword = Users.hashPassword(req.body.Password);
 
+/**
+     * Finds a user by username and updates the user's details.
+     * @param {Object} req - The request object.
+     * @param {Object} res - The response object.
+     * @returns {Object} The updated user object.
+     */
     // Conditions ends
     await Users.findOneAndUpdate({ Username: req.params.Username },
         {
