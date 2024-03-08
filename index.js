@@ -20,7 +20,13 @@ app.use(bodyParser.urlencoded({
 
 // Cors
 const cors = require('cors');
-let allowedOrigins = ['http://testsite.com', 'http://localhost:1234', 'https://miflix.netlify.app', 'http://localhost:4200'];
+let allowedOrigins = [
+    'http://testsite.com',
+    'http://localhost:1234',
+    'https://miflix.netlify.app',
+    'http://localhost:4200',
+    'https://mattsperez.github.io/myFlix-Angular-client/'
+    ];
 app.use(cors({
     /**
       * Origin callback function for CORS.
